@@ -7,9 +7,9 @@ class BlueBox :public Box {
     double smallest_weight_;
     double largest_weight_;
 
-    double getCantoorValue();
+    double getCantoorValue() const;
 public:
     BlueBox(double d);
     void absorbToken(double token_weight) override;
-    double outputScore() override;
+    double outputScore() const override;
 };

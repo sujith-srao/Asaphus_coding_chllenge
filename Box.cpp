@@ -20,8 +20,6 @@ std::unique_ptr<Box> Box::makeBlueBox(double initial_weight) {
 }
 
 bool Box::operator<(const Box& rhs) const {
-    cout << "lhs weight::" << weight_ << endl;
-    cout << "rhs weight::" << rhs.weight_ << endl;
     return weight_ < rhs.weight_;
 }
 

@@ -1,6 +1,6 @@
 #include "GreenBox.h"
 
-double GreenBox::outputScore() {
+double GreenBox::outputScore() const {
     double mean = weight_queue_.get_mean();
     return (mean * mean);
 }

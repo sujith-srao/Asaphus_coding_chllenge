@@ -13,7 +13,7 @@ public:
     bool operator<(const Box& rhs) const;
 
     virtual void absorbToken(double token_weight) = 0;
-    virtual double outputScore() = 0;
+    virtual double outputScore() const = 0;
 
 protected:
     double weight_;
