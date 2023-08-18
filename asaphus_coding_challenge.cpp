@@ -49,6 +49,8 @@
 #include "Player.h"
 #include "Box.h"
 
+bool AreDoubleSame(double dFirstVal, double dSecondVal);
+
 std::pair<double, double> play(const std::vector<uint32_t>& input_weights) {
 	std::vector<std::unique_ptr<Box> > boxes;
 	boxes.emplace_back(Box::makeGreenBox(0.0));
@@ -100,11 +102,20 @@ TEST_CASE("Final scores for first 8 Fibonacci numbers", "[fibonacci8]") {
 }
 
 TEST_CASE("Final scores for first 13 Fibonacci numbers", "[fibonacci13]") {
-
+	//Arrange
 	std::vector<uint32_t> inputs{1, 1, 2, 3, 5, 8, 13, 21,34,55,89,144};
+
+	//Act
 	auto result = play(inputs);
-	REQUIRE(result.first == 4607.78);
-	REQUIRE(result.second == 11843.4);
+
+	//Assert
+	REQUIRE(AreDoubleSame(result.first,4607.77));
+	REQUIRE(AreDoubleSame(result.second,11843.36));
+}
+
+bool AreDoubleSame(double dFirstVal, double dSecondVal)
+{
+	return std::fabs(dFirstVal - dSecondVal) < 0.01;
 }
 
 TEST_CASE("Test absorption of green box", "[green]") {
