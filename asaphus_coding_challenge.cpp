@@ -49,11 +49,6 @@
 #include "Player.h"
 #include "Box.h"
 
-
-// TODO
-
-
-
 std::pair<double, double> play(const std::vector<uint32_t>& input_weights) {
 	std::vector<std::unique_ptr<Box> > boxes;
 	boxes.emplace_back(Box::makeGreenBox(0.0));
@@ -67,12 +62,12 @@ std::pair<double, double> play(const std::vector<uint32_t>& input_weights) {
 
 	for (int i = 0; i < input_weights.size(); i++) {
 
-	if (i % 2 == 0) {
-		player_A.takeTurn(input_weights[i], boxes);
-	}
-	else {
-		player_B.takeTurn(input_weights[i], boxes);
-	}
+		if (i % 2 == 0) {
+			player_A.takeTurn(input_weights[i], boxes);
+		}
+		else {
+			player_B.takeTurn(input_weights[i], boxes);
+		}
 	}
 
 	std::cout << "Scores: player A " << player_A.getScore() << ", player B "
@@ -81,59 +76,100 @@ std::pair<double, double> play(const std::vector<uint32_t>& input_weights) {
 }
 
 TEST_CASE("Final scores for first 4 Fibonacci numbers", "[fibonacci4]") {
+	//Arrange
 	std::vector<uint32_t> inputs{1, 1, 2, 3};
+
+	//Act
 	auto result = play(inputs);
+	
+	//Assert
 	REQUIRE(result.first == 13.0);
 	REQUIRE(result.second == 25.0);
 }
 
 TEST_CASE("Final scores for first 8 Fibonacci numbers", "[fibonacci8]") {
+	//Arrange
 	std::vector<uint32_t> inputs{1, 1, 2, 3, 5, 8, 13, 21};
+
+	//Act
 	auto result = play(inputs);
+	
+	//Assert
 	REQUIRE(result.first == 155.0);
 	REQUIRE(result.second == 366.25);
 }
 
 TEST_CASE("Final scores for first 13 Fibonacci numbers", "[fibonacci13]") {
-		std::vector<uint32_t> inputs{1, 1, 2, 3, 5, 8, 13, 21,34,55,89,144};
-			auto result = play(inputs);
-				//REQUIRE(result.first == 155.0);
-				//	REQUIRE(result.second == 366.25);
+
+	std::vector<uint32_t> inputs{1, 1, 2, 3, 5, 8, 13, 21,34,55,89,144};
+	auto result = play(inputs);
+	//REQUIRE(result.first == 155.0);
+	//REQUIRE(result.second == 366.25);
 }
 
 TEST_CASE("Test absorption of green box", "[green]") {
-  	// TODO
+  	
+	//Arrange
 	double initial_weight = 0.0;
 	std::unique_ptr<Box> greenBox = Box::makeGreenBox(initial_weight);
 	
+	//Act
 	greenBox->absorbToken(1);
+	
+	//Assert
 	REQUIRE(1==greenBox->outputScore());
 	
+	//Act
 	greenBox->absorbToken(5);
+
+	//Assert
 	REQUIRE(9==greenBox->outputScore());
 
 }
 
 TEST_CASE("Test absorption of blue box", "[blue]") {
-  // TODO
+	
+	//Arrange
 	double initial_weight = 0.1;
 	std::unique_ptr<Box> blueBox = Box::makeBlueBox(initial_weight);
 
+	//Act
 	blueBox->absorbToken(2);
+
+	//Assert
 	REQUIRE(12==blueBox->outputScore());
 
+	//Act
 	blueBox->absorbToken(13);
+	
+	//Assert
 	REQUIRE(133==blueBox->outputScore());
 }
 
 TEST_CASE("Test getSmallestBoxIndex", "[Player]"){
+	
+	//Arrange
 	std::vector<std::unique_ptr<Box> > boxes;
 	boxes.emplace_back(Box::makeGreenBox(10));
 	boxes.emplace_back(Box::makeGreenBox(5));
-    	boxes.emplace_back(Box::makeBlueBox(2));
-    	boxes.emplace_back(Box::makeBlueBox(4));
+    boxes.emplace_back(Box::makeBlueBox(2));
+    boxes.emplace_back(Box::makeBlueBox(4));
+	Player player;
+
+	//Act and Assert
+	REQUIRE(2==player.getSmallestBoxIndex(boxes));
+}
+
+TEST_CASE("Test Mean for Queue of 3", "[Queue_Of_3]") {
+
+	//Arrange
+	QueueOfThree queue_of_three;
+	queue_of_three.add(10);
+	queue_of_three.add(12);
+	queue_of_three.add(11);
 
 	Player player;
-	REQUIRE(2==player.getSmallestBoxIndex(boxes));
 
+	//Act and Assert
+	REQUIRE(11 == queue_of_three.get_mean());
 }
