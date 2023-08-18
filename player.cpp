@@ -14,7 +14,6 @@ int Player::getSmallestBoxIndex(const std::vector<std::unique_ptr<Box> >& boxes)
 }
 
 void Player::takeTurn(uint32_t input_weight, const std::vector<std::unique_ptr<Box> >& boxes) {
-
 	int index = getSmallestBoxIndex(boxes);
 	boxes[index]->absorbToken(input_weight);
 	double cur_score = boxes[index]->outputScore();

@@ -103,8 +103,8 @@ TEST_CASE("Final scores for first 13 Fibonacci numbers", "[fibonacci13]") {
 
 	std::vector<uint32_t> inputs{1, 1, 2, 3, 5, 8, 13, 21,34,55,89,144};
 	auto result = play(inputs);
-	//REQUIRE(result.first == 155.0);
-	//REQUIRE(result.second == 366.25);
+	REQUIRE(result.first == 4607.78);
+	REQUIRE(result.second == 11843.4);
 }
 
 TEST_CASE("Test absorption of green box", "[green]") {
