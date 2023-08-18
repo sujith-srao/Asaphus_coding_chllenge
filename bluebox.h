@@ -10,6 +10,6 @@ class BlueBox :public Box {
     double getCantoorValue() const;
 public:
     BlueBox(double d);
-    void absorbToken(double token_weight) override;
+    void absorbToken(const double token_weight) override;
     double outputScore() const override;
 };

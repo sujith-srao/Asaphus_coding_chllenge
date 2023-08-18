@@ -43,6 +43,6 @@ private:
     
 public:
     GreenBox(double initial_weight);
-    void absorbToken(double token_weight) override;
+    void absorbToken(const double token_weight) override;
     double outputScore() const override;
 };

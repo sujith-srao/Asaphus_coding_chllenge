@@ -2,7 +2,7 @@
 #include<iostream>
 #include "GreenBox.h"
 #include "BlueBox.h"
-using namespace std;
+
 
 Box::Box(double initial_weight) :weight_(initial_weight) {
 
