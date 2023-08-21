@@ -5,8 +5,7 @@
 
 int Player::getSmallestBoxIndex(const std::vector<std::unique_ptr<Box> >& boxes) {
 	int index = 0;
-	for (int i = 1; i < boxes.size(); i++) {
-		
+	for (int i = 1; i < boxes.size(); i++) {		
 		if (*(boxes[i]) < *(boxes[index]))
 			index = i;
 	}

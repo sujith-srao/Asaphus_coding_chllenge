@@ -15,6 +15,13 @@ public:
 
     };
 
+    QueueOfThree(const QueueOfThree& rhs):last_3_weights_(rhs.last_3_weights_){
+        
+    };
+    
+    ~QueueOfThree() {
+
+    };
     void add(double weight) {
         int size = last_3_weights_ .size();
 
@@ -43,6 +50,10 @@ private:
     
 public:
     GreenBox(double initial_weight);
+    GreenBox(const GreenBox& rhs):weight_queue_(rhs.weight_queue_),Box(rhs.weight_) {
+        
+    };
+    ~GreenBox() {};
     void absorbToken(const double token_weight) override;
     double outputScore() const override;
 };
