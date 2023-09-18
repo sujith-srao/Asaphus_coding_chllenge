@@ -1,9 +1,31 @@
-#include "BlueBox.h"
+#include "bluebox.h"
 #include<stdexcept>
 #include<iostream>
 using namespace std;
 
 BlueBox::BlueBox(double initial_weight): smallest_weight_(-1),largest_weight_(-1),Box(initial_weight) {
+
+}
+
+BlueBox::BlueBox(const BlueBox& rhs) : smallest_weight_(rhs.smallest_weight_), largest_weight_(rhs.largest_weight_), Box(rhs.weight_) {
+
+}
+
+BlueBox& BlueBox::operator=(const BlueBox& rhs) {
+    if (this != &rhs) {
+        Box::operator=(rhs);
+        smallest_weight_ = rhs.smallest_weight_;
+        largest_weight_ = rhs.largest_weight_;
+    }
+    return *this;
+}
+
+BlueBox::BlueBox(BlueBox&& rhs) noexcept:Box(rhs.weight_) {
+    swap(smallest_weight_, rhs.weight_);
+    swap(largest_weight_, rhs.largest_weight_);
+}
+
+BlueBox::~BlueBox() {
 
 }
 

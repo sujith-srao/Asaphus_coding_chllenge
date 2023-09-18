@@ -7,12 +7,15 @@
 
 class Player {
 public:
-    Player() {};
-    Player(const Player& rhs) : score_(rhs.score_) {};
-    ~Player() {};
+    Player();
+    Player(const Player& rhs);
+    Player(Player&& rhs) noexcept;
+    Player& operator=(const Player& rhs);
+    Player& operator=(Player&& rhs) noexcept;
+    ~Player();
 
     void takeTurn(uint32_t input_weight, const std::vector<std::unique_ptr<Box> >& boxes);
-    double getScore() const { return score_; }
+    double getScore() const; 
     //made public for it to be unit tested
     int getSmallestBoxIndex(const std::vector<std::unique_ptr<Box> >& boxes);
 
