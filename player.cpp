@@ -1,7 +1,4 @@
 #include "Player.h"
-#include<algorithm>
-#include<memory>
-#include<utility>
 
 Player::Player() {
 
@@ -27,10 +24,6 @@ Player& Player::operator=(Player&& rhs) noexcept{
     score_ = rhs.score_;
     rhs.score_ = 0.0;
     return *this;
-}
-
-Player::~Player() {
-
 }
 
 int Player::getSmallestBoxIndex(const std::vector<std::unique_ptr<Box> >& boxes) {

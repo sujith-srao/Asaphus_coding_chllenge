@@ -30,10 +30,6 @@ QueueOfThree& QueueOfThree::operator=(QueueOfThree&& rhs) noexcept{
     return *this;
 }
 
-QueueOfThree::~QueueOfThree() {
-
-};
-
 void QueueOfThree::add(double weight) {
     int size = last_3_weights_.size();
 
@@ -80,10 +76,6 @@ GreenBox& GreenBox::operator=(GreenBox&& rhs) noexcept{
         weight_queue_ = std::move(rhs.weight_queue_);
     }
     return *this;
-}
-
-GreenBox::~GreenBox() {
-
 }
 
 double GreenBox::outputScore() const {

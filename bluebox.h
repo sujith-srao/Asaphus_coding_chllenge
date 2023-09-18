@@ -8,8 +8,9 @@ public:
     BlueBox(double d);
     BlueBox(const BlueBox& rhs);
     BlueBox& operator=(const BlueBox& rhs);
+    BlueBox& operator=(BlueBox&& rhs) noexcept;
     BlueBox(BlueBox&& rhs) noexcept;
-    ~BlueBox();
+    ~BlueBox()=default;
     void absorbToken(const double token_weight) override;
     double outputScore() const override;
 

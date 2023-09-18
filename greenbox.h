@@ -13,7 +13,7 @@ public:
     QueueOfThree(QueueOfThree&& rhs) noexcept;
     QueueOfThree& operator=(const QueueOfThree& rhs);
     QueueOfThree& operator=(QueueOfThree&& rhs) noexcept;
-    ~QueueOfThree();
+    ~QueueOfThree()=default;
     void add(double weight);
     double get_mean() const;
 
@@ -29,7 +29,7 @@ public:
     GreenBox(GreenBox&& rhs) noexcept;
     GreenBox& operator=(const GreenBox& rhs);
     GreenBox& operator=(GreenBox&& rhs) noexcept;
-    ~GreenBox();
+    ~GreenBox()=default;
     void absorbToken(const double token_weight) override;
     double outputScore() const override;
 

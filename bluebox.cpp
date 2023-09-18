@@ -20,13 +20,20 @@ BlueBox& BlueBox::operator=(const BlueBox& rhs) {
     return *this;
 }
 
-BlueBox::BlueBox(BlueBox&& rhs) noexcept:Box(rhs.weight_) {
-    swap(smallest_weight_, rhs.weight_);
-    swap(largest_weight_, rhs.largest_weight_);
+BlueBox& BlueBox::operator=(BlueBox&& rhs) noexcept {
+    Box::operator=(rhs);
+    smallest_weight_ = rhs.smallest_weight_;
+    largest_weight_ = rhs.largest_weight_;
+    rhs.smallest_weight_ = -1;
+    rhs.largest_weight_ = -1;
+    return *this;
 }
 
-BlueBox::~BlueBox() {
-
+BlueBox::BlueBox(BlueBox&& rhs) noexcept:Box(rhs.weight_) {
+    smallest_weight_ = rhs.smallest_weight_;
+    largest_weight_ = rhs.largest_weight_;
+    rhs.smallest_weight_ = -1;
+    rhs.largest_weight_ = -1;
 }
 
 void BlueBox::absorbToken(const double token_weight) {

@@ -12,7 +12,7 @@ public:
     Player(Player&& rhs) noexcept;
     Player& operator=(const Player& rhs);
     Player& operator=(Player&& rhs) noexcept;
-    ~Player();
+    ~Player()=default;
 
     void takeTurn(uint32_t input_weight, const std::vector<std::unique_ptr<Box> >& boxes);
     double getScore() const; 
